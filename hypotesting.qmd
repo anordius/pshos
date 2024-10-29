@@ -1,0 +1,256 @@
+# HYPOTHESIS TESTING
+```{r}
+#| echo: false
+
+source("_common.R")
+```
+
+## Introduction to Hypothesis Testing
+Hypothesis testing helps you make decisions based on data. In simple terms, it helps determine whether an assumption (hypothesis) about a population is likely to be true.
+
+- **Null Hypothesis (Ho)**: A default assumption (e.g., "There is no difference" or "There is no effect").
+- **Alternative Hypothesis (Ha)**: The opposite of Ho (e.g., "There is a difference" or "There is an effect").
+- **p-value**: The probability of observing the data if the null hypothesis is true. If this value is low (usually below 0.05), we reject the null hypothesis.
+
+## Types of Hypothesis Tests
+
+### t-test
+A t-test is used to compare means and is commonly used when the sample size is small, and the population variance is unknown.
+
+Types of t-tests:
+
+1. One-sample t-test: Tests whether the mean of a single group is equal to a known value.
+2. Two-sample t-test (independent): Compares the means of two independent groups.
+3. Paired t-test: Compares means of the same group at different times/ two different points in time (before/after scenarios).
+
+**Key Assumptions**:
+
+- The data are approximately normally distributed.
+- The population variance is unknown.
+- For independent t-tests, the groups are independent of each other.
+
+**When to use**:
+
+- Small sample sizes (generally n < 30).
+- Unknown population variance.
+- Comparing two groups or two conditions.
+
+#### One-sample t-test
+
+Let's say we have a group of students and want to test if their average test score is 70.
+
+Steps:
+
+- Null hypothesis (Ho): The mean score = 70.
+- Alternative hypothesis (Ha): The mean score != 70. (!= means is not equal)
+
+```{r}
+# Sample data (test scores)
+scores <- c(68, 70, 75, 71, 69, 72, 66, 74, 73)
+
+# Perform one-sample t-test
+t.test(scores, mu = 70)
+```
+mu = 70 is the value we are testing against.
+Look at the p-value in the output. If it’s less than 0.05, reject the null hypothesis.
+
+#### Two-sample t-test (Independent)
+
+You want to compare the test scores between two groups: Group A and Group B.
+
+Steps:
+
+- Null hypothesis (H₀): The mean score of Group A = Group B.
+- Alternative hypothesis (H₁): The mean scores are different.
+```{r}
+# Sample data
+group_a <- c(68, 70, 75, 71, 69)
+group_b <- c(72, 74, 73, 76, 78)
+
+# Perform two-sample t-test
+t.test(group_a, group_b)
+```
+
+#### Paired t-test
+
+Suppose we want to check if a training program improves test scores. We have scores before and after the training for the same individuals.
+
+Steps:
+
+- Null hypothesis (H₀): No change in mean scores.
+- Alternative hypothesis (H₁): The mean scores are different before and after training.
+```{r}
+# Scores before and after training
+before <- c(68, 70, 75, 71, 69)
+after <- c(70, 73, 78, 75, 72)
+
+# Perform paired t-test
+t.test(before, after, paired = TRUE)
+```
+
+### Chi-square Test (for Categorical Data)
+This test is used to assess relationships between categorical variables. For example, let’s say we want to test if there’s a relationship between gender and preference for a product.
+
+Steps:
+
+- Null hypothesis (H₀): Gender and product preference are independent.
+- Alternative hypothesis (H₁): Gender and product preference are related.
+
+```{r}
+# Create a contingency table
+gender <- c('Male', 'Female', 'Male', 'Female', 'Male', 'Female')
+preference <- c('Product A', 'Product B', 'Product B', 'Product A', 'Product B', 'Product A')
+table_data <- table(gender, preference)
+
+# Perform chi-square test
+chisq.test(table_data)
+```
+
+Understanding the Output:
+
+- t-value / Chi-squared value: This tells us how far the sample statistic is from the hypothesized population value.
+- p-value: The key value to focus on. If the p-value is less than your chosen significance level (commonly 0.05), reject the null hypothesis.
+- Confidence Interval: This provides a range within which the true population parameter is likely to fall.
+
+*Common Pitfalls*
+
+- Confusing correlation with causation. Even if you find a significant relationship, it doesn’t imply one variable causes the other.
+- Over-reliance on p-values. A small p-value doesn’t always mean practical significance.
+
+
+### z-test
+A z-test is similar to the t-test but is used when the sample size is large, and the population variance is known or can be approximated using the sample.
+
+Key Assumptions:
+
+- The sample size is large (n > 30).
+- The population variance is known or approximated.
+- Data is normally distributed (or approximated to normal using the Central Limit Theorem for large samples).
+
+When to use:
+
+- Large sample sizes.
+- Known population variance.
+- Comparing sample means to population means.
+
+Example:
+
+Testing if the average test score of a class of 100 students is different from a known population mean of 70 when the population variance is known.
+
+There is no built-in z-test function in base R, but you can calculate it manually as follows:
+```{r}
+#| eval: false
+# Z-test for a sample mean
+z <- (mean - population_mean) / (std_dev / sqrt(n))
+p_value <- 2 * pnorm(-abs(z))  # two-tailed test
+```
+### F-test
+An F-test is used to compare the variances of two populations, or to assess whether a group of variables in a model significantly contributes to the outcome.
+
+Common uses of the F-test:
+
+- Variance Comparison: Compare the variances of two populations.
+- ANOVA (Analysis of Variance): The F-test is used to compare the variances between groups and within groups to determine if the means are significantly different.
+- Regression Analysis: Used to determine whether the overall regression model fits the data well, and whether the independent variables together predict the outcome.
+
+Key Assumptions:
+
+- The data follows a normal distribution.
+- The samples are independent.
+- The populations have equal variances (for ANOVA).
+
+When to use:
+
+- To test if the variances of two populations are equal (variance comparison).
+- To determine if the means of three or more groups are significantly different (as part of ANOVA).
+- To assess the overall fit of a regression model.
+
+Example:
+Comparing the variances in test scores between two different teaching methods.
+Testing whether a regression model explains a significant portion of the variance in the outcome variable.
+
+R Example (Variance Comparison):
+```{r}
+# Sample data
+group1 <- c(5.1, 5.8, 6.2, 5.9, 5.4)
+group2 <- c(7.3, 7.6, 7.1, 7.8, 7.4)
+
+# Perform F-test to compare variances
+var.test(group1, group2)
+```
+R Example (ANOVA F-test):
+
+In ANOVA, the F-test is used to determine if the between-group variance is significantly greater than the within-group variance.
+
+```{r}
+#| eval: false
+# Perform one-way ANOVA (F-test)
+anova_result <- aov(score ~ group, data = data)
+summary(anova_result)  # The output includes the F-statistic
+```
+
+How the F-test differs from t-test, z-test, and ANOVA:
+
+> Comparison to t-test:
+
+t-test compares means between two groups, while the F-test often compares variances between groups.
+The t-test can handle one or two groups, but the F-test is used in models with more variables or for variance comparison.
+In regression, the t-test is used for testing individual coefficients, while the F-test checks the overall model significance.
+
+> Comparison to z-test:
+
+Both t-test and z-test focus on comparing means, but the z-test requires known variance, while the F-test compares variances or assesses model significance.
+z-tests are not typically used for variance comparison, which is where the F-test is useful.
+
+> Comparison to ANOVA:
+
+The F-test is a core component of ANOVA, where it compares the variance between groups to the variance within groups.
+While ANOVA uses the F-test to test if the means of three or more groups are different, the F-test itself is a general test for comparing variances and model significance.
+Comparison to Regression Analysis:
+
+In multiple regression analysis, an F-test is used to evaluate whether the model, as a whole, explains the dependent variable. It tells us if at least one predictor variable is statistically significant.
+
+### ANOVA (Analysis of Variance)
+ANOVA is used to compare the means of three or more groups to determine if at least one group differs significantly.
+
+Types of ANOVA:
+
+- One-way ANOVA: Compares means across three or more independent groups based on one factor.
+- Two-way ANOVA: Compares means across groups based on two factors (e.g., time and treatment).
+
+Key Assumptions:
+
+- The groups are independent.
+- The data are normally distributed.
+- Homogeneity of variances (the variance within each group is roughly equal).
+
+When to use:
+
+- Comparing means of three or more groups.
+- Determining whether any of the groups significantly differ from each other.
+
+[Example]{.underline}: Testing whether the average exam scores of students from three different schools are the same or different.
+```{r}
+# Sample data
+group_1 <- c(68, 70, 75)
+group_2 <- c(71, 69, 72)
+group_3 <- c(66, 74, 73)
+
+# Combine data into a data frame
+data <- data.frame(score = c(group_1, group_2, group_3),
+                   group = factor(rep(c('Group 1', 'Group 2', 'Group 3'), each = 3)))
+
+# Perform one-way ANOVA
+anova_result <- aov(score ~ group, data = data)
+summary(anova_result)
+```
+
+: Key Differences:
+
+|Test  |Number of Groups|Population Variance|Sample Size   |Use Case                           |
+|:-----|:---------------|:------------------|:-------------|:----------------------------------|
+|t-test|1 or 2          |Unknown            |Small (n < 30)|Compare the means of 1 or 2 groups.|
+|z-test|1 or 2          |Known or large n   |Large (n > 30)|Compare means with known variance. |
+|ANOVA |3 or more       |Unknown            |Any           |Compare means across 3+ groups.    |
+
+

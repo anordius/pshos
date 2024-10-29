@@ -115,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">HYPOTHESIS TESTING</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./hypotesting.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">HYPOTHESIS TESTING</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -148,7 +148,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link active">
+  <a href="./hypotesting.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">HYPOTHESIS TESTING</span></span></a>
   </div>
 </li>
@@ -179,10 +179,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#t-test" id="toc-t-test" class="nav-link" data-scroll-target="#t-test"><span class="header-section-number">1.2.1</span> t-test</a></li>
   <li><a href="#chi-square-test-for-categorical-data" id="toc-chi-square-test-for-categorical-data" class="nav-link" data-scroll-target="#chi-square-test-for-categorical-data"><span class="header-section-number">1.2.2</span> Chi-square Test (for Categorical Data)</a></li>
+  <li><a href="#z-test" id="toc-z-test" class="nav-link" data-scroll-target="#z-test"><span class="header-section-number">1.2.3</span> z-test</a></li>
+  <li><a href="#f-test" id="toc-f-test" class="nav-link" data-scroll-target="#f-test"><span class="header-section-number">1.2.4</span> F-test</a></li>
+  <li><a href="#anova-analysis-of-variance" id="toc-anova-analysis-of-variance" class="nav-link" data-scroll-target="#anova-analysis-of-variance"><span class="header-section-number">1.2.5</span> ANOVA (Analysis of Variance)</a></li>
   </ul></li>
-  <li><a href="#z-test" id="toc-z-test" class="nav-link" data-scroll-target="#z-test"><span class="header-section-number">1.3</span> z-test</a></li>
-  <li><a href="#f-test" id="toc-f-test" class="nav-link" data-scroll-target="#f-test"><span class="header-section-number">1.4</span> F-test</a></li>
-  <li><a href="#anova-analysis-of-variance" id="toc-anova-analysis-of-variance" class="nav-link" data-scroll-target="#anova-analysis-of-variance"><span class="header-section-number">1.5</span> ANOVA (Analysis of Variance)</a></li>
   </ul>
 </nav>
     </div>
@@ -361,9 +361,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Over-reliance on p-values. A small p-value doesn’t always mean practical significance.</li>
 </ul>
 </section>
-</section>
-<section id="z-test" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="z-test"><span class="header-section-number">1.3</span> z-test</h2>
+<section id="z-test" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="z-test"><span class="header-section-number">1.2.3</span> z-test</h3>
 <p>A z-test is similar to the t-test but is used when the sample size is large, and the population variance is known or can be approximated using the sample.</p>
 <p>Key Assumptions:</p>
 <ul>
@@ -386,8 +385,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pnorm</span>(<span class="sc">-</span><span class="fu">abs</span>(z))  <span class="co"># two-tailed test</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="f-test" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="f-test"><span class="header-section-number">1.4</span> F-test</h2>
+<section id="f-test" class="level3" data-number="1.2.4">
+<h3 data-number="1.2.4" class="anchored" data-anchor-id="f-test"><span class="header-section-number">1.2.4</span> F-test</h3>
 <p>An F-test is used to compare the variances of two populations, or to assess whether a group of variables in a model significantly contributes to the outcome.</p>
 <p>Common uses of the F-test:</p>
 <ul>
@@ -450,8 +449,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The F-test is a core component of ANOVA, where it compares the variance between groups to the variance within groups. While ANOVA uses the F-test to test if the means of three or more groups are different, the F-test itself is a general test for comparing variances and model significance. Comparison to Regression Analysis:</p>
 <p>In multiple regression analysis, an F-test is used to evaluate whether the model, as a whole, explains the dependent variable. It tells us if at least one predictor variable is statistically significant.</p>
 </section>
-<section id="anova-analysis-of-variance" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="anova-analysis-of-variance"><span class="header-section-number">1.5</span> ANOVA (Analysis of Variance)</h2>
+<section id="anova-analysis-of-variance" class="level3" data-number="1.2.5">
+<h3 data-number="1.2.5" class="anchored" data-anchor-id="anova-analysis-of-variance"><span class="header-section-number">1.2.5</span> ANOVA (Analysis of Variance)</h3>
 <p>ANOVA is used to compare the means of three or more groups to determine if at least one group differs significantly.</p>
 <p>Types of ANOVA:</p>
 <ul>
@@ -487,21 +486,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; group        2   0.22   0.111    0.01   0.99</span></span>
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Residuals    6  68.67  11.444</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Key Differences:</p>
 <table class="caption-top table">
+<caption>Key Differences:</caption>
 <colgroup>
 <col style="width: 6%">
 <col style="width: 17%">
-<col style="width: 20%">
-<col style="width: 14%">
-<col style="width: 41%">
+<col style="width: 21%">
+<col style="width: 15%">
+<col style="width: 38%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Test</th>
 <th style="text-align: left;">Number of Groups</th>
 <th style="text-align: left;">Population Variance</th>
-<th style="text-align: center;">Sample Size</th>
+<th style="text-align: left;">Sample Size</th>
 <th style="text-align: left;">Use Case</th>
 </tr>
 </thead>
@@ -510,27 +509,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">t-test</td>
 <td style="text-align: left;">1 or 2</td>
 <td style="text-align: left;">Unknown</td>
-<td style="text-align: center;">Small (n &lt; 30)</td>
+<td style="text-align: left;">Small (n &lt; 30)</td>
 <td style="text-align: left;">Compare the means of 1 or 2 groups.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">z-test</td>
 <td style="text-align: left;">1 or 2</td>
 <td style="text-align: left;">Known or large n</td>
-<td style="text-align: center;">Large (n &gt; 30)</td>
+<td style="text-align: left;">Large (n &gt; 30)</td>
 <td style="text-align: left;">Compare means with known variance.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">ANOVA</td>
 <td style="text-align: left;">3 or more</td>
 <td style="text-align: left;">Unknown</td>
-<td style="text-align: center;">Any</td>
+<td style="text-align: left;">Any</td>
 <td style="text-align: left;">Compare means across 3+ groups.</td>
 </tr>
 </tbody>
 </table>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
