@@ -1,0 +1,42 @@
+[
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  A REVIEW OF STATISTICS USING R",
+    "section": "",
+    "text": "1.1 Estimation of the Population Mean\n# plot the chi_12ˆ2 distribution\ncurve(dchisq(x, df=12),\n  from = 0,\n  to = 40,\n  ylab = \"Density\",\n  xlab = \"Hourly earnings in Euro\")\n# set seed for reproducibility\nset.seed(1)\n# sample from the chi_12ˆ2 distribution, use only the first observation\nrsamp &lt;- rchisq(n = 100, df = 12)\nrsamp[1]\n#&gt; [1] 8.257893",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>A REVIEW OF STATISTICS USING R</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "2  Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Hanck, C., M. Arnold, A. Gerber, and M. Schmelzer. 2021.\nIntroduction to Econometrics with r. Universität\nDuisburg-Essen. https://books.google.co.tz/books?id=YXmyzwEACAAJ.",
+    "crumbs": [
+      "References"
+    ]
+  },
+  {
+    "objectID": "intro.html#estimation-of-the-population-mean",
+    "href": "intro.html#estimation-of-the-population-mean",
+    "title": "1  A REVIEW OF STATISTICS USING R",
+    "section": "",
+    "text": "Hanck, C., Arnold, M., Gerber, A., & Schmelzer, M. (2021). Introduction to Econometrics with R. Universität Duisburg-Essen. https://books.google.co.tz/books?id=YXmyzwEACAAJ",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>A REVIEW OF STATISTICS USING R</span>"
+    ]
+  }
+]

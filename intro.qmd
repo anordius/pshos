@@ -1,0 +1,40 @@
+# A REVIEW OF STATISTICS USING R 
+```{r}
+#| echo: false
+
+source("_common.R")
+```
+
+Refer to @hanck2021introduction for more details. Parts reviewed are:
+
+i. Estimation of unknown population parameters
+ii. Hypothesis testing
+iii. Confidence intervals
+
+```{r}
+#| label: Packages to use
+# dplyr - for data manipulation
+# MASS - a collection of functions for applied statistics 
+# rio - for data import and export
+pacman::p_load(dplyr, MASS)
+```
+
+## Estimation of the Population Mean
+```{r}
+# plot the chi_12ˆ2 distribution
+curve(dchisq(x, df=12),
+  from = 0,
+  to = 40,
+  ylab = "Density",
+  xlab = "Hourly earnings in Euro")
+```
+```{r}
+# set seed for reproducibility
+set.seed(1)
+# sample from the chi_12ˆ2 distribution, use only the first observation
+rsamp <- rchisq(n = 100, df = 12)
+rsamp[1]
+```
+
+
+
